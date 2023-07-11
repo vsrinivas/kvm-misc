@@ -2,7 +2,7 @@
 
 set timeout -1
 
-spawn qemu-system-x86_64 --enable-kvm -kernel vmlinux -append "console=ttyS0 root=/dev/nvme0n1 init=/sbin/sh" -smp 2 -m 2G  -display none -serial stdio -drive file=testdisk.img,if=none,id=nvme -device nvme,drive=nvme,serial=disk -drive file=vac.img,if=none,id=nvme1 -device nvme,drive=nvme1,serial=disk1 -no-reboot
+spawn qemu-system-x86_64 --enable-kvm -kernel vmlinux -append "console=ttyS0 root=/dev/nvme0n1 init=/sbin/sh" -cpu host -smp 2 -m 2G  -display none -serial stdio -drive file=testdisk.img,if=none,id=nvme -device nvme,drive=nvme,serial=disk -drive file=vac.img,if=none,id=nvme1 -device nvme,drive=nvme1,serial=disk1 -no-reboot
 
 expect "~ # "
 send "mount -t proc proc /proc\n"
