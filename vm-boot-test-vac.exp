@@ -2,7 +2,10 @@
 
 set timeout -1
 
-spawn qemu-system-x86_64 --enable-kvm -kernel vmlinux -append "console=ttyS0 root=/dev/nvme0n1 init=/sbin/sh" -smp 1 -m 1G  -display none -serial stdio -drive file=testdisk.img,if=none,id=nvme -device nvme,drive=nvme,serial=disk -drive file=vac.img,if=none,id=nvme1 -device nvme,drive=nvme1,serial=disk1 -no-reboot
+spawn qemu-system-x86_64 --enable-kvm -kernel vmlinux -append "console=ttyS0 root=/dev/nvme0n1 init=/sbin/sh" -smp 2 -m 2G  -display none -serial stdio -drive file=testdisk.img,if=none,id=nvme -device nvme,drive=nvme,serial=disk -drive file=vac.img,if=none,id=nvme1 -device nvme,drive=nvme1,serial=disk1 -no-reboot
+
+expect "~ # "
+send "mount -t proc proc /proc\n"
 
 expect "~ # "
 send "mkdir /tmp\n"
@@ -21,6 +24,48 @@ send "insmod /tmp/mnt/irqbypass.ko\n"
 
 expect "~ # "
 send "insmod /tmp/mnt/kvm-a.ko\n"
+
+expect "~ # "
+send "ln -s /dev/kvm* /dev/kvm\n"
+
+expect "~ # "
+send "/sbin/access_tracking_perf_test\n"
+
+expect "~ # "
+send "/sbin/demand_paging_test\n"
+
+expect "~ # "
+send "/sbin/dirty_log_perf_test\n"
+
+expect "~ # "
+send "/sbin/dirty_log_test\n"
+
+expect "~ # "
+send "/sbin/hardware_disable_test\n"
+
+expect "~ # "
+send "/sbin/kvm_binary_stats_test\n"
+
+expect "~ # "
+send "/sbin/kvm_page_table_test\n"
+
+expect "~ # "
+send "/sbin/max_guest_memory_test\n"
+
+expect "~ # "
+send "/sbin/memslot_modification_stress_test\n"
+
+expect "~ # "
+send "/sbin/memslot_perf_test\n"
+
+expect "~ # "
+send "/sbin/set_memory_region_test\n"
+
+expect "~ # "
+send "/sbin/system_counter_offset_test\n"
+
+expect "~ # "
+send "rmmod kvm-a && rmmod irqbypass && rmmod xvac"
 
 expect "~ # "
 send "reboot -f\n"
