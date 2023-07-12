@@ -1,0 +1,17 @@
+cd qemu
+./configure --target-list=x86_64-softmmu --static --disable-libudev --disable-oss  --disable-vhost-crypto --disable-vhost-kernel  --disable-qed --disable-xen --disable-vhost-user  --disable-tpm --disable-numa  --disable-cloop
+
+make -j`nproc`
+
+dd if=/dev/zero of=disk.img bs=1M count=256
+mkfs.vfat disk.img
+mcopy -i disk.img build/qemu-system-x86_64 ::/
+rm build/qemu-bundle/usr/local/share/qemu/edk2-*
+mcopy -s -i disk.img build/qemu-bundle/usr/local/share ::/
+
+git clone https://gitlab.com/kvm-unit-tests/kvm-unit-tests
+cd kvm-unit-tests
+./configure
+make
+cd ..
+mcopy -s -i disk.img  kvm-unit-tests ::/
