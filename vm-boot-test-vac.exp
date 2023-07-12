@@ -64,8 +64,8 @@ send "/sbin/set_memory_region_test\n"
 expect "~ # "
 send "/sbin/system_counter_offset_test\n"
 
-expect "~ # "
-send "rmmod kvm-a && rmmod irqbypass && rmmod xvac\n"
+#expect "~ # "
+#send "rmmod kvm-a && rmmod irqbypass && rmmod xvac\n"
 
 expect "~ # "
 send "reboot -f\n"
