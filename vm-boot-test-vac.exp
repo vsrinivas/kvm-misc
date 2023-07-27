@@ -67,7 +67,7 @@ send "/sbin/system_counter_offset_test\n"
 
 # kvm-unit-tests
 expect "~ # "
-send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel kvm-unit-tests/x86/msr.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/msr.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
 
 # unload kvm
 # TODO(https://github.com/vsrinivas/linux/issues/5): Fix module unload
