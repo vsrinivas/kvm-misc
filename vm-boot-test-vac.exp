@@ -28,6 +28,7 @@ send "insmod /tmp/mnt/kvm-a.ko\n"
 expect "~ # "
 send "ln -s /dev/kvm* /dev/kvm\n"
 
+# kvm selftests
 expect "~ # "
 send "/sbin/access_tracking_perf_test\n"
 
@@ -64,8 +65,14 @@ send "/sbin/set_memory_region_test\n"
 expect "~ # "
 send "/sbin/system_counter_offset_test\n"
 
+# kvm-unit-tests
 expect "~ # "
-send "rmmod kvm-a && rmmod irqbypass && rmmod xvac\n"
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel kvm-unit-tests/x86/msr.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+# unload kvm
+# TODO(https://github.com/vsrinivas/linux/issues/5): Fix module unload
+#expect "~ # "
+#send "rmmod kvm-a && rmmod irqbypass && rmmod xvac\n"
 
 expect "~ # "
 send "reboot -f\n"
