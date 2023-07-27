@@ -2,7 +2,7 @@
 
 set timeout -1
 
-spawn qemu-system-x86_64 --enable-kvm -kernel vmlinux -append "console=ttyS0 root=/dev/nvme0n1 init=/sbin/sh" -cpu host -smp 2 -m 2G  -display none -serial stdio -drive file=testdisk.img,if=none,id=nvme -device nvme,drive=nvme,serial=disk -drive file=vac.img,if=none,id=nvme1 -device nvme,drive=nvme1,serial=disk1 -no-reboot
+spawn qemu-system-x86_64 --enable-kvm -kernel vmlinux -append "console=ttyS0 root=/dev/nvme0n1 init=/sbin/sh" -cpu host -smp 2 -m 2G  -display none -serial stdio -drive file=testdisk.img,if=none,id=nvme -device nvme,drive=nvme,serial=disk -drive file=qemu-static.img,if=virtio -no-reboot
 
 expect "~ # "
 send "mount -t proc proc /proc\n"
@@ -14,7 +14,7 @@ expect "~ # "
 send "mkdir /tmp/mnt\n"
 
 expect "~ # "
-send "mount -t vfat /dev/nvme1n1 /tmp/mnt\n"
+send "mount -t vfat /dev/vda /tmp/mnt\n"
 
 expect "~ # "
 send "insmod /tmp/mnt/xvac.ko\n"
