@@ -96,6 +96,52 @@ send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-de
 expect "~ # "
 send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/msr.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
 
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/pcid.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/pks.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/pku.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/pmu.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/realmode.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/rmap_chain.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/s3.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/setjmp.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/sieve.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/smap.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/smptest.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/svm.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/svm_npt.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/syscall.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/tsc.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+
 # unload kvm
 # TODO(https://github.com/vsrinivas/linux/issues/5): Fix module unload
 #expect "~ # "
