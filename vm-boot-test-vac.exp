@@ -2,7 +2,7 @@
 
 set timeout -1
 
-spawn qemu-system-x86_64 --enable-kvm -kernel vmlinux -append "console=ttyS0 root=/dev/nvme0n1 init=/sbin/sh" -cpu host -smp 2 -m 2G  -display none -serial stdio -drive file=testdisk.img,if=none,id=nvme -device nvme,drive=nvme,serial=disk -drive file=qemu-static.img,if=virtio -no-reboot
+spawn qemu-system-x86_64 --enable-kvm -kernel vmlinux -append "console=ttyS0 root=/dev/nvme0n1 init=/sbin/sh" -cpu host,+invtsc -smp 2 -m 2G  -display none -serial stdio -drive file=testdisk.img,if=none,id=nvme -device nvme,drive=nvme,serial=disk -drive file=qemu-static.img,if=virtio -no-reboot
 
 expect "~ # "
 send "mount -t proc proc /proc\n"
@@ -143,10 +143,8 @@ expect "~ # "
 send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/tsc.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
 
 
-# unload kvm
-# TODO(https://github.com/vsrinivas/linux/issues/5): Fix module unload
-#expect "~ # "
-#send "rmmod kvm-a && rmmod irqbypass && rmmod xvac\n"
+expect "~ # "
+send "rmmod kvm-a && && rmmod kvm-b && rmmod irqbypass && rmmod xvac\n"
 
 expect "~ # "
 send "reboot -f\n"
