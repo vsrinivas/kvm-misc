@@ -43,6 +43,17 @@ expect "~ # "
 send "ln -s /dev/kvm* /dev/kvm\n"
 }
 
+# try loading and unloading a new kvm, make sure access test still works w/ original kvm
+for {set i 1} {$i < 10} {incr i 1} {
+	expect "~ # "
+	send "insmod /tmp/mnt/kvm-b.ko\n"
+	expect "~ # "
+	send "rmmod kvm-b\n"
+
+	expect "~ # "
+	send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/access_test.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+}
+
 
 expect "~ # "
 send "rmmod kvm-a && rmmod irqbypass && rmmod xvac\n"
