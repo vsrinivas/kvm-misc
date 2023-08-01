@@ -142,6 +142,17 @@ send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-de
 expect "~ # "
 send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/tsc.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
 
+#expect "~ # "
+#send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/tsc_adjust.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/vmexit.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/vmx.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
+
+expect "~ # "
+send "/tmp/mnt/qemu-system-x86_64 --no-reboot  -device pc-testdev -device isa-debug-exit,iobase=0xf4,iosize=0x4 -nographic -device pci-testdev -machine accel=kvm -kernel /tmp/mnt/kvm-unit-tests/x86/xsave.flat -smp 2 -cpu host -L /tmp/mnt/share/qemu\n"
 
 expect "~ # "
 send "rmmod kvm-a && && rmmod kvm-b && rmmod irqbypass && rmmod xvac\n"
